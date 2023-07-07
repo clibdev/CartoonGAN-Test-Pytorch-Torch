@@ -1,3 +1,21 @@
+# Fork of [CartoonGAN-Test-Pytorch-Torch](https://github.com/Yijunmaverick/CartoonGAN-Test-Pytorch-Torch)
+
+Differences between original repository and fork:
+
+* Compatibility with PyTorch >=2.0. (🔥)
+* Installation with [requirements.txt](requirements.txt) file.
+
+# Installation
+
+```shell
+pip install -r requirements.txt
+```
+
+
+
+
+
+
 # CartoonGAN-Test-Pytorch-Torch
 Pytorch and Torch testing code of [CartoonGAN](http://openaccess.thecvf.com/content_cvpr_2018/CameraReady/2205.pdf) `[Chen et al., CVPR18]`. With the released pretrained [models](http://cg.cs.tsinghua.edu.cn/people/~Yongjin/Yongjin.htm) by the authors, I made these simple scripts for a quick test.
 
