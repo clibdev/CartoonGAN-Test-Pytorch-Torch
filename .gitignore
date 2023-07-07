@@ -46,5 +46,5 @@ test/data/legacy_serialized.pt
 DAVIS/
 pretrained_model/*.t7
 pretrained_model/*.pth
+pretrained_model/*.onnx
 model_convert/
-

@@ -55,19 +55,20 @@ for files in os.listdir(opt.input_dir):
 	input_image = input_image[:, :, [2, 1, 0]]
 	input_image = transforms.ToTensor()(input_image).unsqueeze(0)
 	# preprocess, (-1, 1)
-	input_image = -1 + 2 * input_image 
-	if opt.gpu > -1:
-		input_image = input_image.cuda()
-	else:
-		input_image = input_image.float()
-	# forward
-	output_image = model(input_image)
-	output_image = output_image[0]
-	# BGR -> RGB
-	output_image = output_image[[2, 1, 0], :, :]
-	# deprocess, (0, 1)
-	output_image = output_image.data.cpu().float() * 0.5 + 0.5
-	# save
-	vutils.save_image(output_image, os.path.join(opt.output_dir, files[:-4] + '_' + opt.style + '.jpg'))
+	input_image = -1 + 2 * input_image
+	with torch.no_grad():
+		if opt.gpu > -1:
+			input_image = input_image.cuda()
+		else:
+			input_image = input_image.float()
+		# forward
+		output_image = model(input_image)
+		output_image = output_image[0]
+		# BGR -> RGB
+		output_image = output_image[[2, 1, 0], :, :]
+		# deprocess, (0, 1)
+		output_image = output_image.data.cpu().float() * 0.5 + 0.5
+		# save
+		vutils.save_image(output_image, os.path.join(opt.output_dir, files[:-4] + '_' + opt.style + '.jpg'))
 
 print('Done!')
