@@ -4,6 +4,8 @@ Differences between original repository and fork:
 
 * Compatibility with PyTorch >=2.0. (🔥)
 * Installation with [requirements.txt](requirements.txt) file.
+* The following deprecations has been fixed:
+  * UserWarning: volatile was removed and now has no effect.
 
 # Installation
 
@@ -11,6 +13,11 @@ Differences between original repository and fork:
 pip install -r requirements.txt
 ```
 
+# Inference
+
+```shell
+python test.py --model_path pretrained_model --style Hayao --input_dir test_img --output_dir test_out
+```
 
 
 

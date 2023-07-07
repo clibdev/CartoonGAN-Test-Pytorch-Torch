@@ -4,7 +4,6 @@ import numpy as np
 import argparse
 from PIL import Image
 import torchvision.transforms as transforms
-from torch.autograd import Variable
 import torchvision.utils as vutils
 from network.Transformer import Transformer
 
@@ -58,9 +57,9 @@ for files in os.listdir(opt.input_dir):
 	# preprocess, (-1, 1)
 	input_image = -1 + 2 * input_image 
 	if opt.gpu > -1:
-		input_image = Variable(input_image, volatile=True).cuda()
+		input_image = input_image.cuda()
 	else:
-		input_image = Variable(input_image, volatile=True).float()
+		input_image = input_image.float()
 	# forward
 	output_image = model(input_image)
 	output_image = output_image[0]
