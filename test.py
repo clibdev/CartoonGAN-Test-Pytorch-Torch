@@ -9,7 +9,7 @@ from network.Transformer import Transformer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_dir', default = 'test_img')
-parser.add_argument('--load_size', default = 450)
+parser.add_argument('--load_size', type=int, default = 450)
 parser.add_argument('--model_path', default = './pretrained_model')
 parser.add_argument('--style', default = 'Hayao')
 parser.add_argument('--output_dir', default = 'test_output')
