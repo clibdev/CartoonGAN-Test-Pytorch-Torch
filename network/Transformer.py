@@ -15,8 +15,8 @@ class Transformer(nn.Module):
         self.in02_1 = InstanceNormalization(128)
         # relu
         self.conv03_1 = nn.Conv2d(128, 256, 3, 2, 1)
-        self.conv03_2 = nn.Conv2d(256, 256, 3, 1, 1)   
-        self.in03_1 = InstanceNormalization(256)    
+        self.conv03_2 = nn.Conv2d(256, 256, 3, 1, 1)
+        self.in03_1 = InstanceNormalization(256)
         # relu
 
         ## res block 1
@@ -167,7 +167,7 @@ class InstanceNormalization(nn.Module):
         t = x.view(x.size(0), x.size(1), n)
         mean = torch.mean(t, 2).unsqueeze(2).unsqueeze(3).expand_as(x)
         # Calculate the biased var. torch.var returns unbiased var
-        var = torch.var(t, 2).unsqueeze(2).unsqueeze(3).expand_as(x) * ((n - 1) / float(n))
+        var = torch.var(t, 2).unsqueeze(2).unsqueeze(3).expand_as(x) * ((n - 1) / n)
         scale_broadcast = self.scale.unsqueeze(1).unsqueeze(1).unsqueeze(0)
         scale_broadcast = scale_broadcast.expand_as(x)
         shift_broadcast = self.shift.unsqueeze(1).unsqueeze(1).unsqueeze(0)
