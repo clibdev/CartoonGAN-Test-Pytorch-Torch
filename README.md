@@ -7,6 +7,7 @@ Differences between original repository and fork:
 * Model conversion to ONNX format using the [export.py](export.py) file. (🔥)
 * [ONNX Simplifier](https://github.com/daquexian/onnx-simplifier) integration in the [export.py](export.py) file.
 * Installation with [requirements.txt](requirements.txt) file.
+* Minor modifications in the [test.py](test.py) file.
 * The following deprecations and errors has been fixed:
   * UserWarning: volatile was removed and now has no effect.
   * TypeError: can't multiply sequence by non-int of type 'float'.
@@ -29,10 +30,10 @@ pip install -r requirements.txt
 # Inference
 
 ```shell
-python test.py --model_path pretrained_model --style Hayao --input_dir test_img --output_dir test_out
-python test.py --model_path pretrained_model --style Hosoda --input_dir test_img --output_dir test_out
-python test.py --model_path pretrained_model --style Paprika --input_dir test_img --output_dir test_out
-python test.py --model_path pretrained_model --style Shinkai --input_dir test_img --output_dir test_out
+python test.py --model_path pretrained_model --style Hayao --input_dir test_img --output_dir test_out --load_size -1
+python test.py --model_path pretrained_model --style Hosoda --input_dir test_img --output_dir test_out --load_size -1
+python test.py --model_path pretrained_model --style Paprika --input_dir test_img --output_dir test_out --load_size -1
+python test.py --model_path pretrained_model --style Shinkai --input_dir test_img --output_dir test_out --load_size -1
 ```
 
 # Export to ONNX format

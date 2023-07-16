@@ -9,7 +9,7 @@ from network.Transformer import Transformer
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--input_dir', default = 'test_img')
-parser.add_argument('--load_size', type=int, default = 450)
+parser.add_argument('--load_size', type=int, default=450, help='Model input size. Use -1 to indicate the original size')
 parser.add_argument('--model_path', default = './pretrained_model')
 parser.add_argument('--style', default = 'Hayao')
 parser.add_argument('--output_dir', default = 'test_output')
@@ -40,16 +40,17 @@ for files in os.listdir(opt.input_dir):
 	# load image
 	input_image = Image.open(os.path.join(opt.input_dir, files)).convert("RGB")
 	# resize image, keep aspect ratio
-	h = input_image.size[0]
-	w = input_image.size[1]
-	ratio = h *1.0 / w
-	if ratio > 1:
-		h = opt.load_size
-		w = int(h*1.0/ratio)
-	else:
-		w = opt.load_size
-		h = int(w * ratio)
-	input_image = input_image.resize((h, w), Image.BICUBIC)
+	if opt.load_size != -1:
+		h = input_image.size[0]
+		w = input_image.size[1]
+		ratio = h *1.0 / w
+		if ratio > 1:
+			h = opt.load_size
+			w = int(h*1.0/ratio)
+		else:
+			w = opt.load_size
+			h = int(w * ratio)
+		input_image = input_image.resize((h, w), Image.BICUBIC)
 	input_image = np.asarray(input_image)
 	# RGB -> BGR
 	input_image = input_image[:, :, [2, 1, 0]]
