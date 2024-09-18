@@ -19,7 +19,7 @@ if __name__ == '__main__':
         exit()
 
     model = Transformer()
-    model.load_state_dict(torch.load(args.weights))
+    model.load_state_dict(torch.load(args.weights, weights_only=True))
     model = model.to(args.device)
     model.eval()
 
